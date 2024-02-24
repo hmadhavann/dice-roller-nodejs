@@ -1,32 +1,36 @@
-const express = require('express')
+const express = require("express");
 app = express()
 
 const cors = require("cors")
 
-var url = require('url');
-var dt = require('./date-time');
+var url = require("url");
+var dt = require("./date-time");
 
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 3
 
 // Use Express to publish static HTML, CSS, and JavaScript files that run in the browser. 
-app.use(express.static(__dirname + '/static'))
-app.use(cors({ origin: '*' }))
+app.use(express.static(__dirname + "/static"))
+app.use(cors({ origin: "*" }))
 
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
-app.get('/about', (request, response) => {
-	console.log('Calling "/about" on the Node.js server.')
-	response.type('text/plain')
-	response.send('About Node.js on Azure Template.')
+app.get("/about", (request, response) => {
+	console.log("Calling '/about' on the Node.js server")
+	response.type("text/plain")
+	response.send("This application uses nodejs for a server-side implementation of dice-roller")
 })
 
-app.get('/version', (request, response) => {
-	console.log('Calling "/version" on the Node.js server.')
-	response.type('text/plain')
-	response.send('Version: '+majorVersion+'.'+minorVersion)
+app.get("/getRandomNumber", (request, response) => {
+	console.log("Calling '/getRandomNumber' on the Node.js server")
+
+	let dice = Math.floor((Math.random() * 6) + 1);
+
+	response.type("text/plain")
+	response.send(dice.toString())
 })
+/*
 
 app.get('/api/ping', (request, response) => {
 	console.log('Calling "/api/ping"')
@@ -128,14 +132,15 @@ app.get('/batman', (request, response) => {
 	response.type('application/json')
 	response.send(JSON.stringify(batMan))
 })
+*/
 
 // Load your JSON data
-const favoritePlaces = require('./FavoritePlaces.json');
+//const favoritePlaces = require('./FavoritePlaces.json');
 
 // Create a route that serves the JSON data
-app.get('/api/favorite-places', (req, res) => {
-  res.json(favoritePlaces);
-});
+//app.get('/api/favorite-places', (req, res) => {
+ // res.json(favoritePlaces);
+//});
 
 
 
