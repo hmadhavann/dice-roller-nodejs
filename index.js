@@ -9,7 +9,7 @@ var dt = require("./date-time");
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 3
-console.log("THIS IS A TEST")
+
 
 // Use Express to publish static HTML, CSS, and JavaScript files that run in the browser. 
 app.use(express.static(__dirname + "/static"))
