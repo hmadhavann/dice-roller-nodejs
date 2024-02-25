@@ -4,19 +4,18 @@ app = express()
 const cors = require("cors")
 
 var url = require("url");
-var dt = require("./date-time");
+//var dt = require("./date-time");
 
 const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 3
 
 
-// Use Express to publish static HTML, CSS, and JavaScript files that run in the browser. 
+ 
 app.use(express.static(__dirname + "/static"))
 app.use(cors({ origin: "*" }))
 
-// The app.get functions below are being processed in Node.js running on the server.
-// Implement a custom About page.
+
 app.get("/about", (request, response) => {
 	console.log("Calling '/about' on the Node.js server")
 	response.type("text/plain")
@@ -26,10 +25,10 @@ app.get("/about", (request, response) => {
 app.get("/getRandomNumber", (request, response) => {
 	console.log("Calling '/getRandomNumber' on the Node.js server")
 
-	let dice = Math.floor((Math.random() * 6) + 1);
+	let number = Math.floor((Math.random() * 6) + 1);
 
 	response.type("text/plain")
-	response.send(dice.toString())
+	response.send(number.toString())
 })
 
 // Custom 404 page.
